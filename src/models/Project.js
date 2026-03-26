@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const projectSchema = new mongoose.Schema(
   {
@@ -31,7 +31,7 @@ const projectSchema = new mongoose.Schema(
 
     currentBranch: {
       type: String,
-      default: "main", // default branch
+      default: "main",
     },
 
     isPublic: {
@@ -48,3 +48,6 @@ const projectSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+const Project = mongoose.model("Project", projectSchema);
+export default Project;

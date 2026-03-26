@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const documentSchema = new mongoose.Schema(
   {
@@ -11,20 +11,20 @@ const documentSchema = new mongoose.Schema(
 
     content: {
       type: String,
-      default: "", // text content
+      default: "",
     },
 
     project: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Project",
       required: true,
-      index: true, // for filtering
+      index: true,
     },
 
     branch: {
       type: String,
       required: true,
-      index: true, // branch se filtering ke liye hai bas
+      index: true,
     },
 
     createdBy: {
@@ -42,3 +42,6 @@ const documentSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+const Document = mongoose.model("Document", documentSchema);
+export default Document;
