@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const commitSchema = new mongoose.Schema(
   {
@@ -35,7 +35,6 @@ const commitSchema = new mongoose.Schema(
       required: true,
     },
 
-    // previous commit reference (history chain banane ke liye)
     parentCommit: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Commit",
@@ -44,10 +43,13 @@ const commitSchema = new mongoose.Schema(
 
     snapshot: {
       type: String,
-      default: null, // document content at that time
+      default: null,
     },
   },
   {
     timestamps: { createdAt: true, updatedAt: false },
   }
 );
+
+const Commit = mongoose.model("Commit", commitSchema);
+export default Commit;

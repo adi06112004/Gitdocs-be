@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const branchSchema = new mongoose.Schema(
   {
@@ -19,15 +19,18 @@ const branchSchema = new mongoose.Schema(
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true, 
+      required: true,
     },
 
     parentBranch: {
       type: String,
-      default: null, // agar kisi branch se create hui ho
+      default: null,
     },
   },
   {
     timestamps: { createdAt: true, updatedAt: false },
   }
 );
+
+const Branch = mongoose.model("Branch", branchSchema);
+export default Branch;
